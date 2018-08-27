@@ -1,0 +1,24 @@
+{
+    "name": "ttmn/tencentmini",
+    "description": "tencent mini programing demo and sdk",
+    "type": "library",
+    "description": "孙进研的测试composer",
+    "keywords": ["tencent","mini","miniprograming"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ttmn",
+            "email": "2745135670@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ttmn\\Tencentmini\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.1.0",
+        "dingo/api": "2.0.x@dev"
+    },
+    "minimum-stability": "dev"
+}
