@@ -2,7 +2,6 @@
     "name": "ttmn/tencentmini",
     "description": "tencent mini programing demo and sdk",
     "type": "library",
-    "description": "孙进研的测试composer",
     "keywords": ["tencent","mini","miniprograming"],
     "license": "MIT",
     "authors": [
