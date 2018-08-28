@@ -19,7 +19,7 @@ class Tencentmini
     protected $API_KEY =   '';
     protected $ADMINISTRATOR =   '';
 
-    private $user_id    =   null;//正式环境应该为根据小程序传递给我的token标识来获取用户信息
+    private $user_id    =   null;
 
 
     public function __construct()
@@ -39,7 +39,7 @@ class Tencentmini
     public function room_list(Request   $request){
 
         return $this->response->array([
-                "message"=>"请求成功",
+                "message"=>"Success",
                 'code'=>0,
                 "rooms"=>[[]],
                 'errors'=>[]
@@ -55,7 +55,7 @@ class Tencentmini
 
         $user_id    =   $this->set_user_id();
         return $this->response->array([
-                "message"=>"请求成功",
+                "message"=>"Success",
                 "code"=>0,
                 "sdkAppID"=>$this->SDK_APP_ID,
                 "accountType"=>$this->IM_ACCOUNT_TYPE,
@@ -71,7 +71,7 @@ class Tencentmini
         $roomInfo =   $request->input('roomInfo');
         $roomID =   10231234;
         return $this->response->array([
-                "message"=>"请求成功",
+                "message"=>"Success",
                 "code"=>0,
                 "roomID"=>$roomID,
                 "roomInfo"=>$roomInfo,
@@ -111,7 +111,7 @@ class Tencentmini
             $result = $api->verifyUserSig($userSig, $userid, $init_time, $expire_time, $error_msg);
 
 
-            if(!$result){$this->response->error("用户签名校验失败",422);}
+            if(!$result){$this->response->error("this is bad user's sig",422);}
             return  $userSig;
         }catch(Exception $e){
             return $e->getMessage();
@@ -127,26 +127,20 @@ class Tencentmini
 
             $api = new WebRTCSigApi();
 
-            //设置在腾讯云申请的sdkappid
             $api->setSdkAppid($sdkappid);
 
-            //读取私钥的内容
-            //PS:不要把私钥文件暴露到外网直接下载了哦
+
             $private = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'private_key');
-            //设置私钥(签发usersig需要用到）
             $api->SetPrivateKey($private);
 
-            //读取公钥的内容
             $public = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'public_key');
-            //设置公钥(校验userSig和privateMapKey需要用到，校验只是为了验证，实际业务中不需要校验）
             $api->SetPublicKey($public);
 
 
-            //生成privateMapKey
             $privateMapKey = $api->genPrivateMapKey($userid, $roomid);
             $result = $api->verifyPrivateMapKey($privateMapKey, $userid, $init_time, $expire_time, $userbuf, $error_msg);
 
-            if(!$result)$this->response->error("房间签名校验失败",422);
+            if(!$result)$this->response->error("this is bad rome's sig",422);
             return $privateMapKey;
         }catch(Exception $e){
             echo $e->getMessage();
