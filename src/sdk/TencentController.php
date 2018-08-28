@@ -5,7 +5,7 @@ namespace Ttmn\Tencentmini;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Http\Request;
 
-class Tencentmini
+class TencentSdk
 {
     use  Helpers;
     //
