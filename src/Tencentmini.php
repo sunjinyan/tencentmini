@@ -102,7 +102,7 @@ class Tencentmini
 
     private function get_private_map_key($user_id,$roomid){
         try{
-            $sdkappid = self::SDK_APP_ID;
+            $sdkappid = $this->SDK_APP_ID;
             $roomid = $roomid;
             $userid = $user_id;
 
