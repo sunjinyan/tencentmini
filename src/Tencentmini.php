@@ -2,12 +2,8 @@
 
 namespace Ttmn\Tencentmini;
 
-use Dingo\Api\Routing\Helpers;
-use Illuminate\Http\Request;
-
 class Tencentmini
 {
-    use  Helpers;
     //
     protected $MINI_APPID =   '';
     protected $APP_SECRET =   '' ;
@@ -36,49 +32,35 @@ class Tencentmini
     }
 
 
-    public function room_list(Request   $request){
+    public function room_list($roomList){
 
-        return $this->response->array([
-                "message"=>"Success",
-                'code'=>0,
-                "rooms"=>[[]],
-                'errors'=>[]
-            ]
-        )->setStatusCode(200);
+        return [
+            "rooms"=>$roomList
+        ];
     }
 
 
     public function get_login_info($u_id){
-//        $request->post('token');
 
         $this->user_id  =   $u_id;
-
         $user_id    =   $this->set_user_id();
-        return $this->response->array([
-                "message"=>"Success",
-                "code"=>0,
-                "sdkAppID"=>$this->SDK_APP_ID,
-                "accountType"=>$this->IM_ACCOUNT_TYPE,
-                "userSig"=>$this->get_user_sig($user_id),
-                "userID"=>$user_id,
-            ]
-        )->setStatusCode(200);
+        return  [
+            "sdkAppID"=>$this->SDK_APP_ID,
+            "accountType"=>$this->IM_ACCOUNT_TYPE,
+            "userSig"=>$this->get_user_sig($user_id),
+            "userID"=>$user_id,
+        ];
     }
 
 
-    public function create_room(Request $request){
-        $userID =   $request->input('userID');
-        $roomInfo =   $request->input('roomInfo');
-        $roomID =   10231234;
-        return $this->response->array([
-                "message"=>"Success",
-                "code"=>0,
-                "roomID"=>$roomID,
-                "roomInfo"=>$roomInfo,
-                "privateMapKey"=>$this->get_private_map_key($userID,$roomID),
-                "userID"=>$userID,
-            ]
-        )->setStatusCode(200);
+    public function create_room($userID,$roomInfo,$roomID){
+
+        return [
+            "roomID"=>$roomID,
+            "roomInfo"=>$roomInfo,
+            "privateMapKey"=>$this->get_private_map_key($userID,$roomID),
+            "userID"=>$userID,
+        ];
     }
 
 

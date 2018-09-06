@@ -18,8 +18,5 @@
     "require": {
         "php": ">=7.1.0"
     },
-    "require-dev": {
-        "dingo/api": "2.0.x@dev"
-    },
     "minimum-stability": "dev"
 }
