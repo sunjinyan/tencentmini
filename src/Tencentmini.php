@@ -112,10 +112,10 @@ class Tencentmini
             $api->setSdkAppid($sdkappid);
 
 
-            $private = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'private_key');
+            $private = file_get_contents(public_path().DIRECTORY_SEPARATOR.'private_key');
             $api->SetPrivateKey($private);
 
-            $public = file_get_contents(dirname(__FILE__).DIRECTORY_SEPARATOR.'public_key');
+            $public = file_get_contents(public_path().DIRECTORY_SEPARATOR.'public_key');
             $api->SetPublicKey($public);
 
 
