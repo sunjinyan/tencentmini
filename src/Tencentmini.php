@@ -39,11 +39,17 @@ class Tencentmini
         ];
     }
 
-
-    public function get_login_info($u_id){
-
+    public function get_user_id($u_id)
+    {
         $this->user_id  =   $u_id;
         $user_id    =   $this->set_user_id();
+        return  [
+            "userID"=>$user_id
+        ];
+    }
+
+    public function get_login_info($user_id){
+
         return  [
             "sdkAppID"=>$this->SDK_APP_ID,
             "accountType"=>$this->IM_ACCOUNT_TYPE,
